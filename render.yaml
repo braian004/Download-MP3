@@ -3,11 +3,6 @@ services:
   - type: web
     name: mp3-downloader-backend
     env: docker
-<<<<<<< HEAD
-=======
-    dockerfilePath: backend/Dockerfile # Ajusta si tu carpeta se llama backend
-    dockercontext: backend
->>>>>>> 1a568ba2972d9b39b5e893cfece3068960a0ce9b
     plan: free
     docker:
       dockerfilePath: backend/Dockerfile
@@ -17,13 +12,7 @@ services:
   - type: web
     name: mp3-downloader-frontend
     env: docker
-<<<<<<< HEAD
     plan: free
     docker:
       dockerfilePath: frontend/Dockerfile
       context: frontend
-=======
-    dockerfilePath: frontend/Dockerfile
-    dockercontext: frontend
-    plan: free
->>>>>>> 1a568ba2972d9b39b5e893cfece3068960a0ce9b
