@@ -4,7 +4,7 @@ services:
     name: mp3-downloader-backend
     env: docker
     dockerfilePath: backend/Dockerfile # Ajusta si tu carpeta se llama backend
-    context: backend
+    dockercontext: backend
     plan: free
 
   # Servicio para el Frontend (Nginx / Celular Responsive)
@@ -12,5 +12,5 @@ services:
     name: mp3-downloader-frontend
     env: docker
     dockerfilePath: frontend/Dockerfile
-    context: frontend
+    dockercontext: frontend
     plan: free
