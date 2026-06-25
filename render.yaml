@@ -1,5 +1,4 @@
 services:
-  # Servicio para el Backend (Python / FastAPI)
   - type: web
     name: mp3-downloader-backend
     env: docker
@@ -8,7 +7,6 @@ services:
       dockerfilePath: backend/Dockerfile
       context: backend
 
-  # Servicio para el Frontend (Nginx / Celular Responsive)
   - type: web
     name: mp3-downloader-frontend
     env: docker
