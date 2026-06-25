@@ -1,0 +1,16 @@
+services:
+  # Servicio para el Backend (Python / FastAPI)
+  - type: web
+    name: mp3-downloader-backend
+    env: docker
+    dockerfilePath: backend/Dockerfile # Ajusta si tu carpeta se llama backend
+    context: backend
+    plan: free
+
+  # Servicio para el Frontend (Nginx / Celular Responsive)
+  - type: web
+    name: mp3-downloader-frontend
+    env: docker
+    dockerfilePath: frontend/Dockerfile
+    context: frontend
+    plan: free
