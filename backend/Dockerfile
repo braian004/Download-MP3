@@ -20,20 +20,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# 5. Copiar el archivo de dependencias e instalarlas
-COPY requirements.txt .
+# 5. 🛠️ RUTA CORREGIDA: Especificamos el directorio relativo de origen y destino
+COPY ./requirements.txt ./
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
-# 6. Copiar absolutamente todo el contexto del proyecto al contenedor
-COPY . .
+# 6. 🛠️ RUTA CORREGIDA: Copiar todo el contenido de backend a /app
+COPY ./ ./
 
-# 7. Exponer el puerto en el que correrá FastAPI
 # 7. Exponer el puerto en el que correrá FastAPI
 EXPOSE 8000
 
 # 8. 🛠️ AJUSTE DE ENTORNO: Registramos la raíz /app para las importaciones de Python
 ENV PYTHONPATH=/app
 
-# 9. 🛠️ RUTA CORREGIDA: Apuntamos al módulo 'app.main' en lugar de 'main' directamente
+# 9. 🛠️ RUTA CORREGIDA: Apuntamos al módulo 'app.main' de forma interna
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
