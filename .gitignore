@@ -10,7 +10,6 @@ backend/app/downloads/*
 *.mp4
 *.mp3
 backend/downloads/
-downloads/
 backend/app/__pycache__/
 __pycache__/
 .venv/

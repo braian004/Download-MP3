@@ -3,114 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT Media Downloader</title>
+    <title>YT Music Downloader — Neo Engine</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        .neon-progress {
-            background-color: #2563eb;
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at 50% 0%, #0d1527 0%, #05070c 100%);
         }
-        body { background-color: #0b0f19; }
+        .heading-cyber {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .neon-border {
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.05), inset 0 0 12px rgba(255, 255, 255, 0.01);
+        }
     </style>
 </head>
-<body class="text-slate-200 min-h-screen flex flex-col justify-between font-sans antialiased">
+<body class="text-slate-300 min-h-screen flex flex-col justify-between antialiased selection:bg-emerald-500/30 selection:text-white">
 
-    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-12 flex flex-col items-center justify-center">
-        <h1 class="text-3xl font-black tracking-wider text-center uppercase mb-8 text-white flex items-center gap-3">
-            <i class="fa-solid fa-cloud-arrow-down text-blue-500 animate-pulse"></i> Download Your Media
+    <main class="flex-grow max-w-3xl w-full mx-auto px-4 py-16 flex flex-col items-center justify-center">
+        
+        <h1 class="heading-cyber text-3xl sm:text-4xl font-bold tracking-tight text-center uppercase mb-10 text-white flex items-center gap-3.5 drop-shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+            <i class="fa-solid fa-music text-emerald-400 animate-pulse"></i> 
+            <span>Audio<span class="text-emerald-400 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">Downloader</span></span>
         </h1>
 
-        <div class="w-full bg-[#111827] border border-white/[0.04] p-4 rounded-2xl flex flex-col sm:flex-row gap-3 shadow-2xl shadow-black/50 mb-8">
-            <div class="relative flex-grow flex items-center">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 text-slate-500 text-sm"></i>
-                <input type="text" id="urlInput" placeholder="Ingresa una URL de YouTube o /shorts/... y presiona Enter" 
-                       class="w-full bg-[#161d2b] border border-white/[0.02] text-slate-200 pl-11 pr-4 py-3.5 rounded-xl text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all font-medium placeholder-slate-600">
-            </div>
-            <button id="analyzeBtn" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-xl text-xs tracking-widest uppercase transition-all shadow-lg shadow-blue-600/10 active:scale-[0.95]">
-                ANALYZE URL
-            </button>
-        </div>
-
-        <div id="resultCard" class="w-full bg-[#111827] border border-white/[0.04] rounded-2xl shadow-2xl shadow-black/50 p-6 hidden">
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
-                
-                <div class="md:col-span-2 flex flex-col gap-3">
-                    <div class="relative aspect-video w-full overflow-hidden rounded-xl bg-slate-800 border border-white/[0.02] flex items-center justify-center">
-                        <img id="videoThumb" src="" alt="Thumbnail" class="w-full h-full object-cover">
-                        <span id="videoDuration" class="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 rounded text-[10px] font-bold text-white tracking-wide uppercase">Ready</span>
-                    </div>
-                    <div>
-                        <h2 id="videoTitle" class="text-sm font-bold text-white line-clamp-2 leading-snug">Video Title</h2>
-                        <p id="videoAuthor" class="text-[11px] text-slate-500 font-medium mt-0.5">by YouTube Creator</p>
-                    </div>
+        <div id="mainContainerCard" class="main-card w-full neon-border border border-white/[0.05] backdrop-blur-xl rounded-[2rem] p-6 sm:p-10 relative overflow-hidden mb-8 transition-all duration-300">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent"></div>
+            
+            <div class="flex flex-col gap-6">
+                <div>
+                    <label for="urlInput" class="text-[10px] font-bold text-emerald-400/80 uppercase tracking-[0.2em] block mb-2">Ingresar Enlace de Pista</label>
+                    <p class="text-xs text-slate-400/80 mb-4">Introduce el enlace multimedia de YouTube para iniciar la extracción cuántica de audio de alta fidelidad.</p>
                 </div>
 
-                <div class="md:col-span-3 flex flex-col justify-center">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-grow group">
+                        <i class="fa-brands fa-youtube absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg group-focus-within:text-emerald-500 transition-colors duration-300"></i>
+                        <input type="text" id="urlInput" placeholder="https://www.youtube.com/watch?v=..." 
+                               class="w-full bg-[#05070c] border border-white/[0.08] rounded-2xl pl-12 pr-4 py-4 text-sm font-medium text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 transition-all duration-300">
+                    </div>
                     
-                    <div id="optionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                                <i class="fa-solid fa-video text-blue-400"></i> Video MP4
-                            </h3>
-                            <div id="videoQualitiesContainer" class="flex flex-col gap-2"></div>
+                    <button id="analyzeBtn" onclick="analizarVideo()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2.5 border border-emerald-400/30 shadow-[0_4px_20px_rgba(16,185,129,0.2)] active:scale-[0.97]">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i> Analizar
+                    </button>
+                </div>
+            </div>
+
+            <div id="resultCard" class="mt-10 border-t border-white/[0.06] pt-10 hidden">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="md:col-span-5 flex flex-col gap-4">
+                        <div class="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl aspect-video bg-[#05070c]">
+                            <img id="videoThumbnail" src="" alt="Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#05070c] via-transparent to-transparent opacity-60"></div>
                         </div>
-                        <div>
-                            <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                                <i class="fa-solid fa-music text-purple-400"></i> Audio MP3
-                            </h3>
-                            <div id="audioQualitiesContainer" class="flex flex-col gap-2"></div>
-                        </div>
+                        <h2 id="videoTitle" class="text-xs font-semibold text-white leading-relaxed line-clamp-2 px-1">Título del Audio Procesado</h2>
                     </div>
 
-                    <div id="loadingContainer" class="hidden bg-[#161d2b] border border-blue-500/20 p-5 rounded-2xl shadow-inner flex flex-col gap-4">
-                        <div class="flex items-center justify-between border-b border-white/[0.04] pb-3 gap-2">
-                            <div class="flex items-center gap-3 overflow-hidden">
-                                <div class="bg-blue-600/10 p-2.5 rounded-xl border border-blue-500/20 text-blue-400 text-lg animate-spin" id="loadingIcon">
-                                    <i class="fa-solid fa-arrows-spin"></i>
+                    <div class="md:col-span-7 flex flex-col justify-center min-h-[140px]">
+                        
+                        <div id="optionsContainer" class="bg-[#121929]/40 border border-white/[0.04] p-5 rounded-2xl flex flex-col gap-4">
+                            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block border-b border-white/[0.04] pb-2"><i class="fa-solid fa-headphones mr-1"></i> Formato de Audio Encontrado</span>
+                            
+                            <div id="audioQualitiesBlock">
                                 </div>
-                                <div class="overflow-hidden">
-                                    <span class="text-[9px] font-bold uppercase tracking-wider text-blue-400 block" id="downloadFormatLabel">PROCESANDO</span>
-                                    <h4 id="downloadingFileName" class="text-xs font-bold text-white truncate max-w-[200px]">Archivo...</h4>
-                                </div>
+
+                            <div id="playerContainer" class="mt-2 hidden">
+                                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block mb-2">Escuchar dentro de la página</span>
+                                <audio id="inlineAudioPlayer" controls class="w-full h-9 accent-emerald-500 rounded-xl bg-[#05070c] p-1 border border-white/[0.05]"></audio>
                             </div>
-                            <button id="cancelBtn" class="bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white font-bold border border-red-500/20 text-[10px] px-3 py-2 rounded-xl tracking-wider uppercase transition-all duration-200 active:scale-[0.93]">
-                                <i class="fa-solid fa-ban"></i> CANCEL
-                            </button>
                         </div>
 
-                        <div class="w-full bg-[#0f1420] h-4 rounded-full overflow-hidden p-0.5 border border-white/[0.02]">
-                            <div id="progressBar" class="neon-progress h-full w-0 rounded-full transition-all duration-300"></div>
+                        <div id="loadingContainer" class="bg-[#121929]/80 border border-white/[0.04] p-6 rounded-2xl flex flex-col gap-5 hidden">
+                            <div class="flex items-center gap-4">
+                                <div id="loadingIcon" class="bg-emerald-600/10 p-3 rounded-xl border border-emerald-500/20 text-emerald-400 text-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-spinner animate-spin"></i>
+                                </div>
+                                <div class="flex-grow min-w-0">
+                                    <p id="downloadingFileName" class="text-xs font-bold text-white truncate mb-1">archivo.mp3</p>
+                                    <span id="downloadFormatLabel" class="text-[9px] font-bold text-emerald-400 uppercase tracking-widest block">AISLANDO FRECUENCIA AUDIO</span>
+                                </div>
+                            </div>
+
+                            <div class="relative bg-[#05070c] border border-white/[0.06] rounded-xl h-3 overflow-hidden">
+                                <div id="progressBar" class="progress-bar-electric w-0 h-full transition-all duration-300">
+                                    <div class="lightning-glow"></div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3.5">
+                                <div class="bg-[#05070c]/60 p-3 rounded-xl border border-white/[0.02]">
+                                    <span class="text-[9px] font-medium text-slate-500 block uppercase tracking-wider mb-0.5">Canal de Extracción</span>
+                                    <span class="text-xs font-semibold text-slate-300">HQ Audio Stream</span>
+                                </div>
+                                <div class="bg-[#05070c]/60 p-3 rounded-xl border border-white/[0.02]">
+                                    <span class="text-[9px] font-medium text-slate-500 block uppercase tracking-wider mb-0.5">Estado</span>
+                                    <span id="statusText" class="text-xs font-bold text-emerald-400">Procesando...</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-2 text-center pt-1">
-                            <div class="bg-[#111622] p-2 rounded-xl border border-white/[0.02]">
-                                <span class="text-[9px] font-semibold text-slate-500 block uppercase">Tamaño / Progreso</span>
-                                <span id="dataAbsorbedLabel" class="text-xs font-black text-slate-200">- / -</span>
-                            </div>
-                            <div class="bg-[#111622] p-2 rounded-xl border border-white/[0.02]">
-                                <span class="text-[9px] font-semibold text-slate-500 block uppercase">Estado / Tiempo</span>
-                                <span id="statusText" class="text-xs font-black text-blue-400">Procesando...</span>
-                            </div>
-                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <div class="w-full mt-12">
-            <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-clock-rotate-left"></i> Recent Downloads
+        <div class="w-full mt-8">
+            <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-4 flex items-center gap-2 px-1">
+                <i class="fa-solid fa-clock-rotate-left text-xs"></i> Historial de Pistas Descargadas
             </h3>
-            <div id="recentDownloads" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+            <div id="recentDownloads" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
         </div>
     </main>
 
-    <footer class="w-full py-4 text-center border-t border-white/[0.02] bg-[#090d16] text-[10px] text-slate-600 tracking-wider font-semibold uppercase">
-        YT Media Downloader Local Engine — Status: <span class="text-green-500 font-bold">Online</span>
+    <footer class="w-full py-5 text-center border-t border-white/[0.03] bg-[#05070c] text-[9px] text-slate-600 tracking-[0.25em] font-bold uppercase">
+        YT Audio Downloader — Core System Active
     </footer>
 
-    <script src="app.js?v=1.0.1"></script>
+    <audio id="soundElectricity" src="https://assets.mixkit.co/active_storage/sfx/2569/2569-84.wav" loop></audio>
+    <audio id="soundSuccess" src="https://assets.mixkit.co/active_storage/sfx/2019/2019-84.wav"></audio>
+
+    <script src="app.js"></script>
 </body>
 </html>

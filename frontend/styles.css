@@ -1,69 +1,106 @@
-/* 1. Fondo base con degradado premium e indexación de color */
-/* 1. Base background with premium gradient and color indexing */
-body {
-    background: radial-gradient(circle at top left, #1c273e 0%, #0e1320 50%, #0a0d16 100%) !important;
-    min-height: 100vh;
-    display: flex;
-    flex-content: column;
-}
+/* ==========================================================
+   ESTILOS FUTURISTAS Y RESPONSIVOS - NEO ENGINE
+   ========================================================== */
 
-/* 2. Efecto Glassmorphism optimizado para GPU (Mejora velocidad de carga / SEO) */
-/* 2. GPU-optimized Glassmorphism effect (Improves load speed / SEO) */
+/* Tarjeta contenedora principal con degradado oscuro texturizado */
 .main-card {
-    background-color: rgba(17, 22, 37, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    will-change: transform, opacity; /* 👈 Avisa al navegador para renderizado rápido */
+    background: linear-gradient(135deg, rgba(19, 27, 45, 0.7) 0%, rgba(11, 16, 28, 0.9) 100%);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* 3. Contenedor de miniatura responsivo y sin saltos de diseño (CLS = 0) */
-/* 3. Responsive thumbnail container with zero layout shifts (CLS = 0) */
-.ratio-thumbnail {
-    aspect-ratio: 16 / 9;
-    background-color: #000000;
+/* Nueva barra de carga con efecto de energía eléctrica cian */
+.progress-bar-electric {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #00d2ff 0%, #00f2fe 100%);
+    border-radius: 12px;
     position: relative;
-    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.7), 0 0 5px rgba(0, 242, 254, 0.4);
 }
 
-/* 4. Barra de progreso con resplandor neón */
-/* 4. Progress bar with neon glow */
-.neon-progress {
-    background: linear-gradient(90deg, #3b82f6, #60a5fa);
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.6), 0 0 4px rgba(96, 165, 250, 0.4);
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* 👈 Animación suave */
-}
-
-/* 5. Accesibilidad SEO (Mantiene textos legibles para lectores de Google pero ocultos al usuario) */
-/* 5. SEO Accessibility (Keeps text readable for Google crawlers but hidden from users) */
-.sr-only {
+/* Capa translúcida interna que simula el destello del rayo moviéndose */
+.lightning-glow {
     position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: moveLightning 1.2s infinite linear;
 }
 
-/* 6. Animación de entrada para los botones de calidad (User Experience Superior) */
-/* 6. Entrance animation for quality buttons (Superior User Experience) */
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.97);
+/* Animación de destello de éxito total (Dorado Neón) */
+.card-success-flash {
+    animation: goldFlash 0.9s ease-out;
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.25), 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Ajuste responsivo y estilización personalizada para el reproductor nativo */
+audio#inlineAudioPlayer {
+    outline: none;
+}
+
+/* ==========================================================
+   MEDIA QUERIES - OPTIMIZACIÓN DE PANTALLAS (RESPONSIVE)
+   ========================================================== */
+
+/* Ajustes específicos para pantallas muy pequeñas (Móviles de menos de 480px) */
+@media (max-width: 480px) {
+    .main-card {
+        padding: 1.25rem !important; /* Reduce márgenes internos para ganar espacio */
+        border-radius: 1.5rem !important;
     }
-    to {
-        opacity: 1;
-        transform: scale(1);
+    
+    h1 {
+        font-size: 1.75rem !important; /* Ajusta el título para evitar cortes de línea feos */
+    }
+
+    #audioQualitiesBlock button {
+        flex-direction: column; /* Alinea el texto y el botón en vertical */
+        gap: 0.75rem;
+        align-items: flex-start;
+        padding: 1rem !important;
+    }
+
+    #audioQualitiesBlock button span:last-child {
+        width: 100%; /* El botón ocupa todo el ancho en móviles */
+        text-align: center;
     }
 }
 
-/* Se aplica automáticamente al inyectar las filas desde app.js */
-/* Automatically applied when injecting rows from app.js */
-#videoQualitiesContainer > div, 
-#audioQualitiesContainer > div,
-.animate-fade-in {
-    animation: fadeInScale 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* ==========================================================
+   ANIMACIONES DE FOTOGRAMAS (KEYFRAMES)
+   ========================================================== */
+
+/* Movimiento continuo de la onda de luz eléctrica */
+@keyframes moveLightning {
+    0% { 
+        transform: translateX(-100%); 
+    }
+    100% { 
+        transform: translateX(100%); 
+    }
+}
+
+/* Impacto visual expansivo dorado al completarse la descarga */
+@keyframes goldFlash {
+    0% { 
+        background-color: rgba(255, 215, 0, 0.2); 
+    }
+    100% { 
+        background-color: transparent; 
+    }
+}
+
+/* Rotación sutil y fluida para los iconos de discos y engranajes */
+.animate-spin-slow {
+    animation: spin 6s linear infinite;
 }

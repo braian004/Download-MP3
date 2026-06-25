@@ -25,12 +25,15 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
-# 6. 🔑 CORREGIDO: Copiar absolutamente todo el contexto del proyecto al contenedor
-# 🔑 FIXED: Copy absolutely the entire project context into the container
+# 6. Copiar absolutamente todo el contexto del proyecto al contenedor
 COPY . .
 
 # 7. Exponer el puerto en el que correrá FastAPI
+# 7. Exponer el puerto en el que correrá FastAPI
 EXPOSE 8000
 
-# 8. Comando definitivo para arrancar la API en producción dentro de Docker
+# 8. 🛠️ AJUSTE DE ENTORNO: Registramos la raíz /app para las importaciones de Python
+ENV PYTHONPATH=/app
+
+# 9. 🛠️ RUTA CORREGIDA: Apuntamos al módulo 'app.main' en lugar de 'main' directamente
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
