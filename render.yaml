@@ -3,14 +3,12 @@ services:
     name: mp3-downloader-backend
     env: docker
     plan: free
-    docker:
-      dockerfilePath: backend/Dockerfile
-      context: backend
+    dockerfilePath: backend/Dockerfile
+    repoContext: backend
 
   - type: web
     name: mp3-downloader-frontend
     env: docker
     plan: free
-    docker:
-      dockerfilePath: frontend/Dockerfile
-      context: frontend
+    dockerfilePath: frontend/Dockerfile
+    repoContext: frontend
