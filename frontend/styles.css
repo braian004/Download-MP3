@@ -1,0 +1,106 @@
+/* ==========================================================
+   ESTILOS FUTURISTAS Y RESPONSIVOS - NEO ENGINE
+   ========================================================== */
+
+/* Tarjeta contenedora principal con degradado oscuro texturizado */
+.main-card {
+    background: linear-gradient(135deg, rgba(19, 27, 45, 0.7) 0%, rgba(11, 16, 28, 0.9) 100%);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Nueva barra de carga con efecto de energía eléctrica cian */
+.progress-bar-electric {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #00d2ff 0%, #00f2fe 100%);
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.7), 0 0 5px rgba(0, 242, 254, 0.4);
+}
+
+/* Capa translúcida interna que simula el destello del rayo moviéndose */
+.lightning-glow {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: moveLightning 1.2s infinite linear;
+}
+
+/* Animación de destello de éxito total (Dorado Neón) */
+.card-success-flash {
+    animation: goldFlash 0.9s ease-out;
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.25), 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Ajuste responsivo y estilización personalizada para el reproductor nativo */
+audio#inlineAudioPlayer {
+    outline: none;
+}
+
+/* ==========================================================
+   MEDIA QUERIES - OPTIMIZACIÓN DE PANTALLAS (RESPONSIVE)
+   ========================================================== */
+
+/* Ajustes específicos para pantallas muy pequeñas (Móviles de menos de 480px) */
+@media (max-width: 480px) {
+    .main-card {
+        padding: 1.25rem !important; /* Reduce márgenes internos para ganar espacio */
+        border-radius: 1.5rem !important;
+    }
+    
+    h1 {
+        font-size: 1.75rem !important; /* Ajusta el título para evitar cortes de línea feos */
+    }
+
+    #audioQualitiesBlock button {
+        flex-direction: column; /* Alinea el texto y el botón en vertical */
+        gap: 0.75rem;
+        align-items: flex-start;
+        padding: 1rem !important;
+    }
+
+    #audioQualitiesBlock button span:last-child {
+        width: 100%; /* El botón ocupa todo el ancho en móviles */
+        text-align: center;
+    }
+}
+
+/* ==========================================================
+   ANIMACIONES DE FOTOGRAMAS (KEYFRAMES)
+   ========================================================== */
+
+/* Movimiento continuo de la onda de luz eléctrica */
+@keyframes moveLightning {
+    0% { 
+        transform: translateX(-100%); 
+    }
+    100% { 
+        transform: translateX(100%); 
+    }
+}
+
+/* Impacto visual expansivo dorado al completarse la descarga */
+@keyframes goldFlash {
+    0% { 
+        background-color: rgba(255, 215, 0, 0.2); 
+    }
+    100% { 
+        background-color: transparent; 
+    }
+}
+
+/* Rotación sutil y fluida para los iconos de discos y engranajes */
+.animate-spin-slow {
+    animation: spin 6s linear infinite;
+}
