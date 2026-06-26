@@ -11,7 +11,6 @@ services:
   dockerfilePath: frontend/Dockerfile
   autoDeployTrigger: commit
 # Exported from Render on backend
-services:
 - type: web
   name: mp3-downloader-backend
   runtime: docker
