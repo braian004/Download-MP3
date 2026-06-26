@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = "https://mp3-downloader-backend-qyz8.onrender.com/";
 
 // Cargar historial persistente local en la inicialización
 document.addEventListener("DOMContentLoaded", actualizarHistorialUI);
