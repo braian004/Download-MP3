@@ -18,6 +18,6 @@ services:
   plan: free
   region: oregon
   dockerContext: .
-  dockerfilePath: backend/./Dockerfile
+  dockerfilePath: backend/Dockerfile
   autoDeployTrigger: commit
   rootDir: backend
