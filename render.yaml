@@ -1,14 +1,24 @@
+# Exported from Render on 2026-06-26T04:26:43Z
+version: "1"
 services:
-  - type: web
-    name: mp3-downloader-backend
-    env: docker
-    plan: free
-    dockerfilePath: backend/Dockerfile
-    
-
-  - type: web
-    name: mp3-downloader-frontend
-    env: docker
-    plan: free
-    dockerfilePath: frontend/Dockerfile
-    
+- type: web
+  name: mp3-downloader-frontend
+  runtime: docker
+  repo: https://github.com/braian004/Download-MP3
+  plan: free
+  region: oregon
+  dockerContext: .
+  dockerfilePath: frontend/Dockerfile
+  autoDeployTrigger: commit
+# Exported from Render on backend
+services:
+- type: web
+  name: mp3-downloader-backend
+  runtime: docker
+  repo: https://github.com/braian004/Download-MP3
+  plan: free
+  region: oregon
+  dockerContext: .
+  dockerfilePath: backend/./Dockerfile
+  autoDeployTrigger: commit
+  rootDir: backend
